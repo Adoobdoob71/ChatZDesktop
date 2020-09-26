@@ -1,0 +1,16 @@
+directories:
+  output: dist
+  buildResources: assets
+files:
+  - filter:
+      - build/**/*
+      - build/**/*
+      - node_modules/**/*
+extraMetadata:
+  main: build/electron.js
+appId: ChatZ
+public:
+  provider: github
+  token: d6e8e3cfbe443010a2c10433f491f250e52e39fa
+extends: react-cra
+electronVersion: 9.3.1
