@@ -11,6 +11,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.2",
+    "electron-updater": "^4.3.5",
     "expo-image-picker": "^9.1.1",
     "firebase": "^7.17.2",
     "fontsource-roboto": "^3.0.3",
@@ -19,7 +20,8 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.2",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "update-electron-app": "^1.5.0"
   },
   "build": {
     "appId": "ChatZ",
@@ -28,13 +30,18 @@
       "node_modules/**/*"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Adoobdoob71/ChatZDesktop.git"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && electron-builder",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron-start": "electron .",
-    "electron-build": "electron-builder"
+    "electron-build": "electron-builder",
+    "deploy": "electron-builder build --publish always"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -12,6 +12,7 @@ import { Clear, Maximize, Minimize } from "@material-ui/icons";
 import { loginState } from "./redux/LoginState";
 import LoginFragment from "./fragments/LoginFragment";
 import * as firebase from "firebase";
+const { autoUpdater } = require("electron-updater");
 
 function isElectron() {
   // Renderer process
@@ -47,6 +48,7 @@ function isElectron() {
 function App() {
   const [fragmentManagement, setFragmentManagement] = React.useState(null);
   const [user, setUser] = React.useState(null);
+  const [updateAvailable, setUpdateAvailable] = React.useState(false);
   React.useEffect(() => {
     routeNav.subscribe(() => setFragmentManagement(routeNav.getState().type));
     firebase.auth().onAuthStateChanged((user) => setUser(user));
@@ -61,6 +63,8 @@ function App() {
   const minimize = React.createRef();
   const maximize = React.createRef();
   const clear = React.createRef();
+  const updateDiv = React.createRef();
+  autoUpdater.on("update-available", () => setUpdateAvailable(true));
   return (
     <ThemeProvider theme={primary}>
       <div
@@ -165,6 +169,34 @@ function App() {
         </div>
       </div>
       <LoginFragment />
+      <div
+        style={{
+          position: "absolute",
+          zIndex: 10000,
+          padding: 16,
+          backgroundColor: theme.drawerColor,
+          display: updateAvailable ? "flex" : "none",
+          flexDirection: "column",
+          bottom: 12,
+          right: 12,
+        }}
+        ref={updateDiv}>
+        <span style={{ color: theme.textColor, fontSize: 21 }}>Update!</span>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <Button
+            color="primary"
+            variant="outlined"
+            onClick={() => (updateDiv.current.style.display = "none")}>
+            Remind me later
+          </Button>
+          <Button
+            color="primary"
+            variant="outlined"
+            onClick={() => autoUpdater.quitAndInstall()}>
+            Update
+          </Button>
+        </div>
+      </div>
     </ThemeProvider>
   );
 }
