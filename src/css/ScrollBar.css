@@ -1,0 +1,17 @@
+.divScroll::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.divScroll::-webkit-scrollbar {
+  width: 5px;
+  height: 0px;
+}
+
+.divScroll::-webkit-scrollbar-thumb {
+  background-color: #757575;
+  transition: .3s;
+}
+
+.divScroll::-webkit-scrollbar-thumb:hover {
+  background-color: #ce93d8;
+}
