@@ -39,4 +39,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Electron App
 
-This is also an electron application. In order to start the app you do `npm run-scripts electron-start` in the command line.
+This is also an electron application. In order to start the app you type `npm run-scripts electron-start` in the command line.
